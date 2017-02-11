@@ -218,13 +218,27 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        /*Step 8 beginning*/
+
         mSendButton = (Button) findViewById(R.id.sendButton);
         mSendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Send messages on click.
+
+                // create a message object
+                FriendlyMessage message = new FriendlyMessage(mMessageEditText.getText().toString(),
+                        mUsername, mPhotoUrl);
+
+                // update it
+                mFireDbReference.child(MESSAGES_CHILD).push().setValue(message);
+                mMessageEditText.setText("");
+
             }
         });
+
+        /*Step 8 finishes*/
+
     }
 
     @Override
